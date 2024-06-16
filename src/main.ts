@@ -12,6 +12,9 @@ async function bootstrap() {
         bufferLogs: true,
     });
 
+    // Enable CORS
+    app.enableCors();
+
     // Config the logger
     const customLogger = app.get(NestjsLoggerServiceAdapter);
     app.useLogger(customLogger);
