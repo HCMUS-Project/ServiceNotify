@@ -5,6 +5,7 @@
 
 export default () => ({
     port: parseInt(process.env.PORT, 10) || 3000,
+    host: process.env.NOTIFY_HOST || 'localhost',
     organization: process.env.ORGANIZATION || 'NestJS',
     context: process.env.CONTEXT || 'NestJS',
     app: process.env.APP || 'api',
