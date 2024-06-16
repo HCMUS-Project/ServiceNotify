@@ -13,7 +13,10 @@ async function bootstrap() {
     });
 
     // Enable CORS
-    app.enableCors();
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    });
 
     // Config the logger
     const customLogger = app.get(NestjsLoggerServiceAdapter);
@@ -28,7 +31,7 @@ async function bootstrap() {
 
     //Get the value from the environment variables
     const configService = app.get(ConfigService<ConfigsModule>);
-    const host = configService.get<string>('host')
+    const host = configService.get<string>('host');
     const port = configService.get<number>('port');
 
     // Listen on the port

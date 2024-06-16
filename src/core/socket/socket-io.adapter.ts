@@ -9,7 +9,8 @@ import { DISCONNECT_EVENT } from '@nestjs/websockets/constants';
 export class SocketIoAdapter extends AbstractWsAdapter {
     constructor(
         appOrHttpServer?: INestApplicationContext | any,
-        private readonly corsOrigins = [],
+        private readonly corsOrigins = "*",
+        // private readonly corsOrigins = [],
     ) {
         super(appOrHttpServer);
     }
