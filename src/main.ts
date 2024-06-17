@@ -12,6 +12,12 @@ async function bootstrap() {
         bufferLogs: true,
     });
 
+    // Enable CORS
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    });
+
     // Config the logger
     const customLogger = app.get(NestjsLoggerServiceAdapter);
     app.useLogger(customLogger);
@@ -25,10 +31,11 @@ async function bootstrap() {
 
     //Get the value from the environment variables
     const configService = app.get(ConfigService<ConfigsModule>);
+    const host = configService.get<string>('host');
     const port = configService.get<number>('port');
 
     // Listen on the port
-    await app.listen(port, async () => {
+    await app.listen(port, host, async () => {
         const url = await app.getUrl();
         customLogger.log(`Server running on ${url}`);
     });
