@@ -12,14 +12,10 @@ import Logger, { LoggerKey } from 'src/core/logger/interfaces/logger.interface';
 @Injectable()
 @WebSocketGateway()
 export class EventsGateway {
-
     @WebSocketServer()
     server: Server;
 
-    constructor(
-        @Inject(LoggerKey) private logger: Logger,
-    ) {}
-
+    constructor(@Inject(LoggerKey) private logger: Logger) {}
 
     @SubscribeMessage('events')
     handleEvent(@MessageBody() data: any, @ConnectedSocket() client: Socket) {
