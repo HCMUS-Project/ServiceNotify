@@ -11,6 +11,13 @@ const queueRegisterConfigs: Record<string, RegisterQueueOptions> = {
         name: 'booking',
         sharedConnection: true,
     },
+    e_commerce: {
+        /**
+         * The name of the queue.
+         */
+        name: 'e_commerce',
+        sharedConnection: true,
+    },
 };
 
 export default queueRegisterConfigs;

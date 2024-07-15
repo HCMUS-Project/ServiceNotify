@@ -14,6 +14,12 @@ export class BookingNotifyQueueProcessor extends WorkerHost {
         super();
     }
 
+    /**
+     * Process a job in the queue.
+     *
+     * @param job - The job to be processed.
+     * @returns A Promise that resolves when the job is processed.
+     */
     async process(job: Job) {
         this.logger.info('Booking notify with data: ', { props: { data: job.data } });
         console.log(`booking-notify/${job.data.domain}`);
