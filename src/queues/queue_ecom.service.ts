@@ -24,6 +24,10 @@ export class ECommerceNotifyQueueProcessor extends WorkerHost {
         this.logger.info('E-commerce notify with data: ', { props: { data: job.data } });
         console.log(`e_commerce-notify/${job.data.domain}`);
         this.eventsGateway.server.emit(`e_commerce-notify/${job.data.domain}`, job.data);
+        this.eventsGateway.server.emit(
+            `e_commerce-notify/${job.data.domain}/${job.data.email}`,
+            job.data,
+        );
         this.logger.debug('Message sent to e_commerce-notify channel.');
     }
 }
