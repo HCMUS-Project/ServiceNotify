@@ -24,6 +24,10 @@ export class BookingNotifyQueueProcessor extends WorkerHost {
         this.logger.info('Booking notify with data: ', { props: { data: job.data } });
         console.log(`booking-notify/${job.data.domain}`);
         this.eventsGateway.server.emit(`booking-notify/${job.data.domain}`, job.data);
+        this.eventsGateway.server.emit(
+            `booking-notify/${job.data.domain}/${job.data.email}`,
+            job.data,
+        );
         this.logger.debug('Message sent to booking-notify channel.');
     }
 }
